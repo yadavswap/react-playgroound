@@ -26,11 +26,11 @@ const {error,loading,userInfo} = useSelector(
   (state)=>state?.users?.userAuth
 )
 // redirect 
-if(userInfo?.userExists?.isAdmin){
-  window.location.href = '/admin'
-}else{
-  window.location.href = '/customer-profile'
-}
+// if(userInfo?.userExists?.isAdmin){
+//   window.location.href = '/admin'
+// }else{
+//   window.location.href = '/customer-profile'
+// }
   // //select store data
   // const { loading, userAuth } = {};
   // //redirect
@@ -51,6 +51,8 @@ if(userInfo?.userExists?.isAdmin){
                 <p className="mb-10 font-semibold font-heading">
                   Happy to see you again
                 </p>
+                {console.log('error',error)}
+                {error && <h2 className="text-red-600">{error?.message}</h2>}
                 <form
                   className="flex flex-wrap -mx-4"
                   onSubmit={onSubmitHandler}>
@@ -84,9 +86,14 @@ if(userInfo?.userExists?.isAdmin){
                   </div>
 
                   <div className="w-full px-4">
-                    <button className="bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
-                      Login
+                  {loading ? (
+                    <button  className="bg-greay-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
+                      Loading...
                     </button>
+                  ) :  <button className="bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
+                      Login
+                    </button>}
+                   
                   </div>
                 </form>
               </div>
