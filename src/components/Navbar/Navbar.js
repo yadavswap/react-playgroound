@@ -16,6 +16,11 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   //get cart items from local storage
+
+  const user = JSON.parse(localStorage.getItem("userInfo"))
+  console.log(user);
+  const isLoggedIn = user?.token ? true : false;
+
   let cartItemsFromLocalStorage;
   return (
     <div className="bg-white">
@@ -104,7 +109,9 @@ export default function Navbar() {
 
                 {/* mobile links register/login */}
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4">
-                  <div className="flow-root">
+                 {!isLoggedIn && 
+                 <>
+                 <div className="flow-root">
                     <Link
                       to="/register"
                       className="-m-2 block p-2 font-medium text-gray-900">
@@ -118,6 +125,7 @@ export default function Navbar() {
                       Sign in
                     </Link>
                   </div>
+                 </>}
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 py-6 px-4"></div>
@@ -137,6 +145,7 @@ export default function Navbar() {
               </p>
 
               <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+               {!isLoggedIn && <>
                 <Link
                   to="/register"
                   className="text-sm font-medium text-white hover:text-gray-100">
@@ -148,6 +157,7 @@ export default function Navbar() {
                   className="text-sm font-medium text-white hover:text-gray-100">
                   Sign in
                 </Link>
+               </>}
               </div>
             </div>
           </div>
