@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import CustomerProfile from './components/Users/Profile/CustomerProfile';
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AuthRoute from './components/AuthRoute.js/AuthRoute';
-
+import AdminRoutes from './components/AuthRoute.js/AdminRoutes';
 function App() {
   return (
     <BrowserRouter>
@@ -15,9 +15,9 @@ function App() {
     <Routes>
       {/* nested route */}
       <Route path="admin" element={
-        <AuthRoute>
+        <AdminRoutes>
           <AdminDashboard />
-        </AuthRoute>
+        </AdminRoutes>
       }>
       </Route>
       {/* users */}
