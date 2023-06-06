@@ -1,4 +1,4 @@
-import { createAsyncThunk, isRejectedWithValue,createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios";
 import baseURL from "../../../utils/baseURL";
 // initialState
@@ -46,6 +46,7 @@ export const registerUserAction = createAsyncThunk(
             });
             return data;
         } catch (error) {
+
             return isRejectedWithValue(error?.response?.data);
         }
     }
@@ -74,6 +75,7 @@ const userSlice = createSlice({
             state.loading = true;
         })
         builder.addCase(registerUserAction.fulfilled,(state,action)=>{
+            console.log('action',action);
             state.user = action.payload;
             state.loading = false;
         })
@@ -82,6 +84,7 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.loading = false;
         })
+
     }
 })
 

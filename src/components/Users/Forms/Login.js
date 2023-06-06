@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUserAction } from "../../../redux/slices/users/userSlice";
-
+import Loading from "../../Loading/LoadingComponent";
 const Login = () => {
     // dispatch
     const dispatch = useDispatch();
@@ -87,9 +87,7 @@ const {error,loading,userInfo} = useSelector(
 
                   <div className="w-full px-4">
                   {loading ? (
-                    <button  className="bg-greay-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
-                      Loading...
-                    </button>
+                   <Loading/>
                   ) :  <button className="bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
                       Login
                     </button>}

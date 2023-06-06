@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUserAction } from "../../../redux/slices/users/userSlice";
-
+import Loading from "../../Loading/LoadingComponent";
+import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 const RegisterForm = () => {
-  //dispatch
    const dispatch = useDispatch();
+     //dispatch
+
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -21,16 +23,21 @@ const RegisterForm = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(registerUserAction({fullname,email,password}))
-    console.log(fullname,email,password);
   };
   //select store data
+  
+    const { user, error, loading } = useSelector((state) => state?.users);
 
-  //select store data
-  const { loading, userAuth } = {};
-  //redirect
-  if (userAuth?.userInfo?.status) {
-    window.location.href = "/login";
-  }
+    // redirect
+    // if(userAuth?.userInfo?.status){
+    //   window.location.href="/login"
+    // }
+    // useEffect(() => {
+    //   if (user) {
+    //     window.location.href = "/login";
+    //   }
+    // }, [user]);
+ 
 
   return (
     <>
@@ -43,6 +50,9 @@ const RegisterForm = () => {
                   Signing up with social is super quick
                 </h3>
                 {/* errr */}
+                {console.log('swapnil',error)}
+                {error && <ErrorMsg message={error?.message} />}
+
                 {/* Error */}
               
                 <p className="mb-10">Please, do not hesitate</p>
@@ -71,12 +81,18 @@ const RegisterForm = () => {
                     type="password"
                     placeholder="Enter your password"
                   />
+                 {loading ? (
+                  
+                  <Loading/>
+                
+                 ) : (
                   <button
                     // disable the button if loading is true
                     disabled={loading}
                     className="mt-12 md:mt-16 bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
-                    {loading ? "Loading..." : "Register"}
+                    Register
                   </button>
+                 )}
                 </form>
               </div>
             </div>

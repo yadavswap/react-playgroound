@@ -5,8 +5,8 @@ import Login from './components/Users/Forms/Login';
 import Navbar from './components/Navbar/Navbar';
 import CustomerProfile from './components/Users/Profile/CustomerProfile';
 import AdminDashboard from "./components/Admin/AdminDashboard";
-import AuthRoute from './components/AuthRoute.js/AuthRoute';
-import AdminRoutes from './components/AuthRoute.js/AdminRoutes';
+import AuthRoute from './components/AuthRoute/AuthRoute';
+import AdminRoutes from './components/AuthRoute/AdminRoutes';
 import RegisterForm from './components/Users/Forms/RegisterForm';
 function App() {
   return (
