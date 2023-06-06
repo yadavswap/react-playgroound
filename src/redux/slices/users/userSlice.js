@@ -25,6 +25,7 @@ export const loginUserAction = createAsyncThunk(
                 email,
                 password,
             });
+            localStorage.setItem("userInfo",JSON.stringify(data))
             return data;
         } catch (error) {
             return isRejectedWithValue(error?.response?.data);
