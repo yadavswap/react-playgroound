@@ -7,6 +7,7 @@ import CustomerProfile from './components/Users/Profile/CustomerProfile';
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AuthRoute from './components/AuthRoute.js/AuthRoute';
 import AdminRoutes from './components/AuthRoute.js/AdminRoutes';
+import RegisterForm from './components/Users/Forms/RegisterForm';
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,8 @@ function App() {
       </Route>
       {/* users */}
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<RegisterForm />} />
+
       <Route path="/customer-profile" element={<CustomerProfile />} />
 
     </Routes>

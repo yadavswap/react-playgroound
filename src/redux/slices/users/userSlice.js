@@ -33,6 +33,23 @@ export const loginUserAction = createAsyncThunk(
     }
 )
 
+// register action
+export const registerUserAction = createAsyncThunk(
+    "users/register",
+    async ({email,password,fullname},{isRejectedWithValue,getState,dispatch})=>{
+        try {
+            // make the http request
+            const {data} = await axios.post(`${baseURL}/users/register`,{
+                email,
+                password,
+                fullname
+            });
+            return data;
+        } catch (error) {
+            return isRejectedWithValue(error?.response?.data);
+        }
+    }
+)
 // users slice 
 const userSlice = createSlice({
     name:"users",
@@ -51,6 +68,19 @@ const userSlice = createSlice({
             
             state.userAuth.error = action.payload;
             state.userAuth.loading = false;
+        })
+          // register
+          builder.addCase(registerUserAction.pending,(state,action)=>{
+            state.loading = true;
+        })
+        builder.addCase(registerUserAction.fulfilled,(state,action)=>{
+            state.user = action.payload;
+            state.loading = false;
+        })
+        builder.addCase(registerUserAction.rejected,(state,action)=>{
+            
+            state.error = action.payload;
+            state.loading = false;
         })
     }
 })
