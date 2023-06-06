@@ -5,6 +5,7 @@ import Login from './components/Users/Forms/Login';
 import Navbar from './components/Navbar/Navbar';
 import CustomerProfile from './components/Users/Profile/CustomerProfile';
 import AdminDashboard from "./components/Admin/AdminDashboard";
+import AuthRoute from './components/AuthRoute.js/AuthRoute';
 
 function App() {
   return (
@@ -13,7 +14,11 @@ function App() {
     {/* hide navbar if admin */}
     <Routes>
       {/* nested route */}
-      <Route path="admin" element={<AdminDashboard />}>
+      <Route path="admin" element={
+        <AuthRoute>
+          <AdminDashboard />
+        </AuthRoute>
+      }>
       </Route>
       {/* users */}
       <Route path="/login" element={<Login />} />
